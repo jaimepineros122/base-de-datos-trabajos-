@@ -1,0 +1,7 @@
+Select name,price 
+Case
+   when type="A" Then price=20
+   when type="B" then price=70
+   when type="C" tehn price=530.5
+End as price
+From products

@@ -1,0 +1,1 @@
+Select c.name from customers as c, legal_person as lp where lp.id_customers = c.id;

@@ -1,0 +1,2 @@
+select l.name,l.omega*1,618 as "the N factory" from life_registry
+Join dimension as d on l.id_dimension = d.id order by l.omega;

@@ -1,0 +1,2 @@
+select c.id,c.name from customers as c join locations as l 
+On c.id=l.id where c.id=5 order by c.id;
