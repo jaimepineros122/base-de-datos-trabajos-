@@ -1,0 +1,6 @@
+C:\Users\malt1\source\repos\WindowsFormsApp1\capa_entidad\bin\Debug\capa_entidad.dll
+C:\Users\malt1\source\repos\WindowsFormsApp1\capa_entidad\bin\Debug\capa_entidad.pdb
+C:\Users\malt1\source\repos\WindowsFormsApp1\capa_entidad\obj\Debug\capa_entidad.csproj.AssemblyReference.cache
+C:\Users\malt1\source\repos\WindowsFormsApp1\capa_entidad\obj\Debug\capa_entidad.csproj.CoreCompileInputs.cache
+C:\Users\malt1\source\repos\WindowsFormsApp1\capa_entidad\obj\Debug\capa_entidad.dll
+C:\Users\malt1\source\repos\WindowsFormsApp1\capa_entidad\obj\Debug\capa_entidad.pdb
