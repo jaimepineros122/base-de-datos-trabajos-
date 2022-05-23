@@ -1,0 +1,75 @@
+const database = 'Compania';
+const collection = 'empleados';
+
+// Create a new database.
+use(database);
+
+// Create a new collection.
+//db.createCollection(collection);
+//db.empleados.drop();
+/*db.empleados.insertMany([
+  { '_id': 1, "nombre": 'Juan',   'apellido': 'Torres', 'Cargo': 'Ingeniero en jefe', 'Nomina': 10000000, 'fechadecontratación': new Date('2014-03-01T08:00:00Z'),'estado':true, "empresa": {"_id": ObjectId(11)} },
+  { '_id': 2, 'nombre': 'Brayan', 'apellido': 'Torres', 'Cargo': 'Profesor', 'Nomina': 9000000, 'fecha de contratación': new Date('2014-10-01T08:00:00Z'),'estado':true, "empresa": {"_id": ObjectId(11)} },
+  { '_id': 3, 'nombre': 'Stiven', 'apellido': 'Torres', 'Cargo': 'Lider de recursos humanos', 'Nomina': 2000000, 'fechadecontratación': new Date('2014-03-15T09:00:00Z'),'estado':true, "empresa": {"_id": ObjectId(11)}  },
+  { '_id': 4, 'nombre': 'Jesica', 'apellido': 'Perez',  'Cargo': 'Administrador', 'Nomina':3000000  , 'fechadecontratación': new Date('2014-04-04T11:21:39.736Z'),'estado':true, "empresa": {"_id": ObjectId(11)}  },
+  { '_id': 5, 'nombre': 'Viviana','apellido': 'Perez',  'Cargo': 'Software engineer', 'Nomina': 20000000, 'fechadecontratación ': new Date('2014-04-04T21:23:13.331Z'),'estado':true, "empresa": {"_id": ObjectId(14)}  },
+  { '_id': 6, 'nombre': 'Ana',    'apellido': 'Perez',  'Cargo': 'Ingeniero Químico', 'Nomina': 1500000, 'fechadecontratación ': new Date('2018-06-04T05:08:13Z'),'estado':true, "empresa": {"_id": ObjectId(11)}  },
+  { '_id': 7, 'nombre': 'Maria',  'apellido': 'Sanchez','Cargo': 'Ingeniero Industrial', 'Nomina': 1400000, 'fechadecontratación ': new Date('2019-09-10T08:43:00Z'),'estado':true, "empresa": {"_id": ObjectId(13)}  },
+  { '_id': 8, 'nombre': 'William','apellido': 'Sanchez','Cargo': 'Gerente General', 'Nomina': 50000, 'fechadecontratación ': new Date('2022-02-06T20:20:13Z'),'estado':true, "empresa": {"_id": ObjectId(11)}  },
+]);*/
+//ingresar un documento 
+/*var fecha1= new Date(1999,08,04)//otra manera de insertar una fecha es creando una instancia afuera
+db.empleados.insertOne({'_id': 9, 'nombre': 'Pedro',   'apellido': 'Torres', 'Cargo': 'Ingeniero en jefe', 'Nomina': 10000000, 'fechadecontratación':fecha1, 'estado':true,"empresa": ObjectId("628a93e7e38afa3b69eba23f")})*/
+db.empleados.find()
+
+//5 Consultar todos los empleados de la empresa x
+/*db.empresa.aggregate([
+    {
+        $match: {
+            _id: ObjectId("628a93e7e38afa3b69eba23f")
+            }
+    }
+    ,{
+        $lookup: {
+            from: "empleados",
+            localField: "_id",
+            foreignField: "empresa",
+            as: "empleados "
+            }
+    }
+    ]);
+    */
+
+db.empleados.aggregate([
+  {
+    "$group": {
+      "_id": null,
+      "suma": {
+        "$sum": "$Nomina"
+      }
+    }
+  },
+  {
+    "$project": {
+      "_id": 0
+    }
+  }
+])
+
+db.getCollection("empleados").find($and: [{"Nomina": {$gt:1000000},{"Nomina":{$lt:6000000}}}])
+
+db.empleados.find({apellido:"Torres"}).count();
+
+db.getCollection("empleados").find({"fechadecontratación": {$gt:new Date('1999-01-01')}})
+
+db.empleados.remove()
+db.empleados.insertMany([
+  { '_id': 1, "nombre": 'Juan',   'apellido': 'Torres', 'Cargo': 'Ingeniero en jefe', 'Nomina': 10000000, 'fechadecontratación': new Date('2014-03-01T08:00:00Z'),'estado':true, "empresa": {"_id": ObjectId(11)},"comidasfavoritas":"pizza" },
+  { '_id': 2, 'nombre': 'Brayan', 'apellido': 'Torres', 'Cargo': 'Profesor', 'Nomina': 9000000, 'fecha de contratación': new Date('2014-10-01T08:00:00Z'),'estado':true, "empresa": {"_id": ObjectId(11)},"comidasfavoritas":"pizza" },
+  { '_id': 3, 'nombre': 'Stiven', 'apellido': 'Torres', 'Cargo': 'Lider de recursos humanos', 'Nomina': 2000000, 'fechadecontratación': new Date('2014-03-15T09:00:00Z'),'estado':true, "empresa": {"_id": ObjectId(11)},"comidasfavoritas":"Hamburguesa"  },
+  { '_id': 4, 'nombre': 'Jesica', 'apellido': 'Perez',  'Cargo': 'Administrador', 'Nomina':3000000  , 'fechadecontratación': new Date('2014-04-04T11:21:39.736Z'),'estado':true, "empresa": {"_id": ObjectId(11)},"comidasfavoritas":"pizza"  },
+  { '_id': 5, 'nombre': 'Viviana','apellido': 'Perez',  'Cargo': 'Software engineer', 'Nomina': 20000000, 'fechadecontratación ': new Date('2014-04-04T21:23:13.331Z'),'estado':true, "empresa": {"_id": ObjectId(14)},"comidasfavoritas":"Hamburguesa"  },
+  { '_id': 6, 'nombre': 'Ana',    'apellido': 'Perez',  'Cargo': 'Ingeniero Químico', 'Nomina': 1500000, 'fechadecontratación ': new Date('2018-06-04T05:08:13Z'),'estado':true, "empresa": {"_id": ObjectId(11)},"comidasfavoritas":"pizza"  },
+  { '_id': 7, 'nombre': 'Maria',  'apellido': 'Sanchez','Cargo': 'Ingeniero Industrial', 'Nomina': 1400000, 'fechadecontratación ': new Date('2019-09-10T08:43:00Z'),'estado':true, "empresa": {"_id": ObjectId(13)},"comidasfavoritas":"Hamburguesa"  },
+  { '_id': 8, 'nombre': 'William','apellido': 'Sanchez','Cargo': 'Gerente General', 'Nomina': 50000, 'fechadecontratación ': new Date('2022-02-06T20:20:13Z'),'estado':true, "empresa": {"_id": ObjectId(11)},"comidasfavoritas":"pizza"  },
+]);
