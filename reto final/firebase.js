@@ -54,8 +54,8 @@ export const getTasks = () => getDocs(collection(db, "Estudiante"));
 
 
 /**  segunda parte-------------------------------------------------------------------------------*/
-export const saveTask2 = (idstude, nombre,apellido) =>
-  addDoc(collection(db, "Clases"), { idstude,nombre,apellido });
+export const saveTask2 = (idclass, title,description) =>
+  addDoc(collection(db, "Clases"), { idclass,title,description });
 
 export const onGetTasks2 = (callback2) =>
   onSnapshot(collection(db, "Clases"), callback2);
@@ -64,11 +64,31 @@ export const onGetTasks2 = (callback2) =>
  *
  * @param {string} id Task ID
  */
-export const eliminar = (id2) => deleteDoc(doc(db, "Clases", id2));
+export const eliminar = (id) => deleteDoc(doc(db, "Clases", id));
 
-export const getTask2 = (id2) => getDoc(doc(db, "Clases", id2));
+export const getTask2 = (id) => getDoc(doc(db, "Clases", id));
 
-export const actualizar = (id2, newFields2) =>
-  updateDoc(doc(db, "Clases", id2), newFields2);
+export const actualizar = (id, newFields2) =>
+  updateDoc(doc(db, "Clases", id), newFields2);
 
 export const obtener = () => getDocs(collection(db, "Clases"));
+
+/**  tercera  parte-------------------------------------------------------------------------------*/
+export const saveTask3 = (idmatricula,idclass,idstude) =>
+  addDoc(collection(db, "Matricula"), { idmatricula,idclass,idstude });
+
+export const onGetTasks3 = (callback2) =>
+  onSnapshot(collection(db, "Matricula"), callback2);
+
+/**
+ *
+ * @param {string} id Task ID
+ */
+export const eliminar3 = (id) => deleteDoc(doc(db, "Matricula", id));
+
+export const getTask3 = (id) => getDoc(doc(db, "Matricula", id));
+
+export const actualizar3 = (id, newFields2) =>
+  updateDoc(doc(db, "Matricula", id), newFields2);
+
+export const obtener3 = () => getDocs(collection(db, "Matricula"));
